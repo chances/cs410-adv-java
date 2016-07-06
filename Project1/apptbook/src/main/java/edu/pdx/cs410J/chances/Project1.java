@@ -2,8 +2,12 @@ package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointmentBook;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * The main class for the CS410J appointment book Project
@@ -48,9 +52,9 @@ public class Project1 {
     // Handle too few or extraneous arguments
     int argsListSize = argsList.size();
     if (argsListSize < EXPECTED_NUM_ARGS) {
-      System.err.println("Missing command line arguments");
+      System.err.println("Too few command line arguments");
     } else if (argsListSize > EXPECTED_NUM_ARGS) {
-      System.err.println("Missing command line arguments");
+      System.err.println("Too many command line arguments");
     }
 
     if (argsListSize == EXPECTED_NUM_ARGS) {
@@ -60,23 +64,64 @@ public class Project1 {
       String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
       String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
-      System.out.println(beginTime);
-      System.out.println(endTime);
-
-      Appointment appointment = new Appointment(description);
-
-      if (shouldPrintDescription) {
-//        System.out.println(appointment);
+      DateFormat[] formats = new DateFormat[]{
+              new SimpleDateFormat("mm/dd/yyyy kk:mm"),
+              new SimpleDateFormat("mm/dd/yyyy k:mm"),
+              new SimpleDateFormat("m/dd/yyyy kk:mm"),
+              new SimpleDateFormat("m/dd/yyyy k:mm"),
+              new SimpleDateFormat("mm/d/yyyy kk:mm"),
+              new SimpleDateFormat("mm/d/yyyy k:mm"),
+              new SimpleDateFormat("m/d/yyyy kk:mm"),
+              new SimpleDateFormat("m/d/yyyy k:mm")
+      };
+      for (DateFormat format : formats) {
+        format.setLenient(false);
       }
 
-      // TODO: Only exit successfully when dates are parsed
-      System.exit(0);
+      Date begin = tryParseDate(formats, beginTime);
+      Date end = tryParseDate(formats, endTime);
+
+      if (begin == null) {
+        System.err.println("Malformed begin time");
+      } else if (end == null) {
+        System.err.println("Malformed end time");
+      } else {
+        Appointment appointment = new Appointment(description);
+
+        appointment.setBeginTime(begin);
+        appointment.setEndTime(end);
+
+        if (shouldPrintDescription) {
+          System.out.println(appointment);
+        }
+
+        System.exit(0);
+      }
     }
 
     // Default to error
     System.err.println();
     System.err.println(USAGE_DOCUMENTATION);
     System.exit(1);
+  }
+
+  static Date tryParseDate(DateFormat[] formats, String dateTime) {
+    for (DateFormat format : formats) {
+      Date date = tryParseDate(format, dateTime);
+      if (date != null) {
+        return date;
+      }
+    }
+
+    return null;
+  }
+
+  static Date tryParseDate(DateFormat format, String dateTime) {
+    try {
+      return format.parse(dateTime);
+    } catch (ParseException ex) {
+      return null;
+    }
   }
 
 }
