@@ -5,8 +5,8 @@ import edu.pdx.cs410J.AbstractAppointment;
 import java.util.Date;
 
 public class Appointment extends AbstractAppointment {
-  private String beginTime;
-  private String endTime;
+  private Date beginTime;
+  private Date endTime;
   private String description;
 
   public Appointment() {}
@@ -19,14 +19,14 @@ public class Appointment extends AbstractAppointment {
    * Set the time this appointment begins.
    */
   public void setBeginTime(Date beginTime) {
-    this.beginTime = beginTime.toString();
+    this.beginTime = beginTime;
   }
 
   /**
    * Set the time this appointment ends.
    */
   public void setEndTime(Date endTime) {
-    this.endTime = endTime.toString();
+    this.endTime = endTime;
   }
 
   /**
@@ -36,7 +36,7 @@ public class Appointment extends AbstractAppointment {
      */
   @Override
   public String getBeginTimeString() {
-    return beginTime;
+    return beginTime.toString();
   }
 
   /**
@@ -46,7 +46,7 @@ public class Appointment extends AbstractAppointment {
    */
   @Override
   public String getEndTimeString() {
-    return endTime;
+    return endTime.toString();
   }
 
   /**
