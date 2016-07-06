@@ -34,4 +34,15 @@ public class AppointmentTest {
     assertThat(appointment.getEndTime(), is(nullValue()));
   }
 
+  @Test
+  public void initiallyGetBeginTimeStringReturnsNull() {
+    Appointment appointment = new Appointment();
+    assertThat(appointment.getBeginTimeString(), is(nullValue()));
+  }
+
+  @Test
+  public void initiallyGetEndTimeStringReturnsNull() {
+    Appointment appointment = new Appointment();
+    assertThat(appointment.getEndTimeString(), is(nullValue()));
+  }
 }
