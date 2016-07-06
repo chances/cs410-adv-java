@@ -110,6 +110,13 @@ public class Project1 {
     System.exit(1);
   }
 
+  /**
+   * Try to parse a date-time string given an array of DateFormat
+   *
+   * @param formats Array of DateFormat objects
+   * @param dateTime Date-time string to try to parse
+   * @return Null or successfully parsed Date
+     */
   static Date tryParseDate(DateFormat[] formats, String dateTime) {
     for (DateFormat format : formats) {
       Date date = tryParseDate(format, dateTime);
@@ -121,6 +128,13 @@ public class Project1 {
     return null;
   }
 
+  /**
+   * Try to parse a date-time string given a DateFormat
+   *
+   * @param format DateFormat object
+   * @param dateTime Date-time string to try to parse
+   * @return Null or successfully parsed Date
+     */
   static Date tryParseDate(DateFormat format, String dateTime) {
     try {
       return format.parse(dateTime);

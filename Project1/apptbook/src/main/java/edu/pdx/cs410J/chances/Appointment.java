@@ -9,8 +9,11 @@ public class Appointment extends AbstractAppointment {
   private Date endTime;
   private String description;
 
-  public Appointment() {}
-
+  /**
+   * Construct a new appointment given a description.
+   *
+   * @param description Description of the new appointment
+     */
   public Appointment(String description) {
     this.description = description;
   }
