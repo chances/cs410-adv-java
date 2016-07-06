@@ -2,8 +2,8 @@ package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointmentBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * The main class for the CS410J appointment book Project
@@ -20,12 +20,13 @@ public class Project1 {
           "\t\t-print Prints a description of the new appointment\n" +
           "\t\t-README Prints a README for this project and exits\n" +
           "\tDate and time should be in the format: mm/dd/yyyy hh:mm";
+  public static final int EXPECTED_NUM_ARGS = 6;
 
   public static void main(String[] args) {
     // Refer to one of Dave's classes so that we can be sure it is on the classpath
     Class c = AbstractAppointmentBook.class;
 
-    List<String> argsList = Arrays.asList(args);
+    ArrayList<String> argsList = new ArrayList<>(Arrays.asList(args));
 
     // Print the README if flag is present
     if (argsList.contains("-README")) {
@@ -44,13 +45,37 @@ public class Project1 {
       argsList.remove(0);
     }
 
-    // Parse appointment args
-    for (String arg : argsList) {
-      System.out.println(arg);
+    // Handle too few or extraneous arguments
+    int argsListSize = argsList.size();
+    if (argsListSize < EXPECTED_NUM_ARGS) {
+      System.err.println("Missing command line arguments");
+    } else if (argsListSize > EXPECTED_NUM_ARGS) {
+      System.err.println("Missing command line arguments");
+    }
+
+    if (argsListSize == EXPECTED_NUM_ARGS) {
+      // Parse appointment args
+      String owner = argsList.get(0);
+      String description = argsList.get(1);
+      String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
+      String endTime = String.join(" ", argsList.get(4), argsList.get(5));
+
+      System.out.println(beginTime);
+      System.out.println(endTime);
+
+      Appointment appointment = new Appointment(description);
+
+      if (shouldPrintDescription) {
+//        System.out.println(appointment);
+      }
+
+      // TODO: Only exit successfully when dates are parsed
+      System.exit(0);
     }
 
     // Default to error
-    System.err.println("Missing command line arguments");
+    System.err.println();
+    System.err.println(USAGE_DOCUMENTATION);
     System.exit(1);
   }
 
