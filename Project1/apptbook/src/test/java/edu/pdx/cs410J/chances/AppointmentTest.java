@@ -23,9 +23,15 @@ public class AppointmentTest {
   }
 
   @Test
-  public void forProject1ItIsOkayIfGetBeginTimeReturnsNull() {
+  public void initiallyGetBeginTimeReturnsNull() {
     Appointment appointment = new Appointment();
     assertThat(appointment.getBeginTime(), is(nullValue()));
+  }
+
+  @Test
+  public void initiallyGetEndTimeReturnsNull() {
+    Appointment appointment = new Appointment();
+    assertThat(appointment.getEndTime(), is(nullValue()));
   }
 
 }
