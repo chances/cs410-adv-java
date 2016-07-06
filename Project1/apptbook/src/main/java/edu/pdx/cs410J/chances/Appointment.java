@@ -58,8 +58,4 @@ public class Appointment extends AbstractAppointment {
   public String getDescription() {
     return description;
   }
-
-  public void setBeginAndEndTimesFromCommandLineArgs(String dateTimes) {
-
-  }
 }
