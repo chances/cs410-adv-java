@@ -40,5 +40,10 @@ public class AppointmentTest {
     assertThat(appointment.getEndTimeString(), is(nullValue()));
   }
 
-
+  @Test
+  public void canCreateAppointmentWithDescription() {
+    final String DESCRIPTION = "Foobar";
+    Appointment appointment = new Appointment(DESCRIPTION);
+    assertThat(appointment.getDescription(), is(equalTo(DESCRIPTION)));
+  }
 }

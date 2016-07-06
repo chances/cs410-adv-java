@@ -7,6 +7,12 @@ public class Appointment extends AbstractAppointment {
   private String endTime;
   private String description;
 
+  public Appointment() {}
+
+  public Appointment(String description) {
+    this.description = description;
+  }
+
   @Override
   public String getBeginTimeString() {
     return beginTime;
