@@ -64,6 +64,8 @@ public class Project1 {
       String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
       String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
+      AppointmentBook book = new AppointmentBook(owner);
+
       DateFormat[] formats = new DateFormat[]{
               new SimpleDateFormat("mm/dd/yyyy kk:mm"),
               new SimpleDateFormat("mm/dd/yyyy k:mm"),
@@ -90,6 +92,9 @@ public class Project1 {
 
         appointment.setBeginTime(begin);
         appointment.setEndTime(end);
+
+        // Add the successfully parsed appointment to the book
+        book.addAppointment(appointment);
 
         if (shouldPrintDescription) {
           System.out.println(appointment);
