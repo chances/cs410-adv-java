@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointment;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Appointment extends AbstractAppointment {
   private String beginTime;
@@ -11,6 +12,20 @@ public class Appointment extends AbstractAppointment {
 
   public Appointment(String description) {
     this.description = description;
+  }
+
+  /**
+   * Set the time this appointment begins.
+   */
+  public void setBeginTime() {
+    throw new NotImplementedException();
+  }
+
+  /**
+   * Set the time this appointment ends.
+   */
+  public void setEndTime() {
+    throw new NotImplementedException();
   }
 
   @Override

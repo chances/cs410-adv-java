@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.chances;
 
 import org.junit.Test;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -45,5 +46,17 @@ public class AppointmentTest {
     final String DESCRIPTION = "Foobar";
     Appointment appointment = new Appointment(DESCRIPTION);
     assertThat(appointment.getDescription(), is(equalTo(DESCRIPTION)));
+  }
+
+  @Test(expected = NotImplementedException.class)
+  public void setBeginTimeIsNotImplemented() {
+    Appointment appointment = new Appointment();
+    appointment.setBeginTime();
+  }
+
+  @Test(expected = NotImplementedException.class)
+  public void setEndTimeIsNotImplemented() {
+    Appointment appointment = new Appointment();
+    appointment.setEndTime();
   }
 }
