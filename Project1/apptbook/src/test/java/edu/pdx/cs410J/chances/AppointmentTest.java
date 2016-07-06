@@ -1,7 +1,8 @@
 package edu.pdx.cs410J.chances;
 
 import org.junit.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -48,15 +49,23 @@ public class AppointmentTest {
     assertThat(appointment.getDescription(), is(equalTo(DESCRIPTION)));
   }
 
-  @Test(expected = NotImplementedException.class)
-  public void setBeginTimeIsNotImplemented() {
+  @Test
+  public void setBeginTimeAcceptsADateObject() {
     Appointment appointment = new Appointment();
-    appointment.setBeginTime();
+    appointment.setBeginTime(new Date());
   }
 
-  @Test(expected = NotImplementedException.class)
-  public void setEndTimeIsNotImplemented() {
+  @Test
+  public void setEndTimeAcceptsADateObject() {
     Appointment appointment = new Appointment();
-    appointment.setEndTime();
+    appointment.setEndTime(new Date());
+  }
+
+  @Test
+  public void setBeginAndEndTimeFromCommandLineArgDates() {
+    final String DATE_TIMES = "7/15/2016 14:39 06/2/2016 1:03";
+
+    Appointment appointment = new Appointment();
+    appointment.setBeginAndEndTimesFromCommandLineArgs(DATE_TIMES);
   }
 }

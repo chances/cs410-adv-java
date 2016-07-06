@@ -1,7 +1,8 @@
 package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointment;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.Date;
 
 public class Appointment extends AbstractAppointment {
   private String beginTime;
@@ -17,15 +18,15 @@ public class Appointment extends AbstractAppointment {
   /**
    * Set the time this appointment begins.
    */
-  public void setBeginTime() {
-    throw new NotImplementedException();
+  public void setBeginTime(Date beginTime) {
+    this.beginTime = beginTime.toString();
   }
 
   /**
    * Set the time this appointment ends.
    */
-  public void setEndTime() {
-    throw new NotImplementedException();
+  public void setEndTime(Date endTime) {
+    this.endTime = endTime.toString();
   }
 
   @Override
@@ -41,5 +42,10 @@ public class Appointment extends AbstractAppointment {
   @Override
   public String getDescription() {
     return description;
+  }
+
+  public void setBeginAndEndTimesFromCommandLineArgs(String dateTimes)
+  {
+
   }
 }
