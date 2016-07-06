@@ -44,8 +44,7 @@ public class Appointment extends AbstractAppointment {
     return description;
   }
 
-  public void setBeginAndEndTimesFromCommandLineArgs(String dateTimes)
-  {
+  public void setBeginAndEndTimesFromCommandLineArgs(String dateTimes) {
 
   }
 }
