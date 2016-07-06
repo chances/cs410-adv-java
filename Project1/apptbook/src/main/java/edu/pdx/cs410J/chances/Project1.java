@@ -10,6 +10,17 @@ import java.util.List;
  */
 public class Project1 {
 
+  public static final String USAGE_DOCUMENTATION = "usage: java edu.pdx.cs410J.chances.Project1 [options] <args>\n" +
+          "\targs are (in this order):\n" +
+          "\t\towner The person whose owns the appt book\n" +
+          "\t\tdescription A description of the appointment\n" +
+          "\t\tbeginTime When the appt begins (24-hour time)\n" +
+          "\t\tendTime When the appt ends (24-hour time)\n" +
+          "\toptions are (options may appear in any order):\n" +
+          "\t\t-print Prints a description of the new appointment\n" +
+          "\t\t-README Prints a README for this project and exits\n" +
+          "\tDate and time should be in the format: mm/dd/yyyy hh:mm";
+
   public static void main(String[] args) {
     // Refer to one of Dave's classes so that we can be sure it is on the classpath
     Class c = AbstractAppointmentBook.class;
@@ -21,16 +32,7 @@ public class Project1 {
       System.out.println("Chance Snow - Project 1\n" +
               "\tAppointment Book Application\n\n" +
               "Create an appointment in a new appointment book.\n");
-      System.out.print("usage: java edu.pdx.cs410J.chances.Project1 [options] <args>\n" +
-              "\targs are (in this order):\n" +
-              "\t\towner The person whose owns the appt book\n" +
-              "\t\tdescription A description of the appointment\n" +
-              "\t\tbeginTime When the appt begins (24-hour time)\n" +
-              "\t\tendTime When the appt ends (24-hour time)\n" +
-              "\toptions are (options may appear in any order):\n" +
-              "\t\t-print Prints a description of the new appointment\n" +
-              "\t\t-README Prints a README for this project and exits\n" +
-              "\tDate and time should be in the format: mm/dd/yyyy hh:mm\n");
+      System.out.print(USAGE_DOCUMENTATION);
 
       System.exit(0);
     }
