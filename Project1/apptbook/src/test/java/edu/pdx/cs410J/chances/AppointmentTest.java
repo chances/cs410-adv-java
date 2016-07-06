@@ -10,16 +10,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class AppointmentTest {
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void getBeginTimeStringNeedsToBeImplemented() {
     Appointment appointment = new Appointment();
     appointment.getBeginTimeString();
   }
 
   @Test
-  public void initiallyAllAppointmentsHaveTheSameDescription() {
+  public void initiallyAllAppointmentsHaveNullDescription() {
     Appointment appointment = new Appointment();
-    assertThat(appointment.getDescription(), containsString("not implemented"));
+    assertThat(appointment.getDescription(), is(nullValue()));
   }
 
   @Test
