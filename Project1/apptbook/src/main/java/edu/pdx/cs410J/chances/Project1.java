@@ -37,7 +37,15 @@ public class Project1 {
       System.exit(0);
     }
 
-    for (String arg : args) {
+    // Handle print option
+    boolean shouldPrintDescription = argsList.get(0).equals("-print");
+
+    if (shouldPrintDescription) {
+      argsList.remove(0);
+    }
+
+    // Parse appointment args
+    for (String arg : argsList) {
       System.out.println(arg);
     }
 
