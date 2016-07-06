@@ -29,16 +29,31 @@ public class Appointment extends AbstractAppointment {
     this.endTime = endTime.toString();
   }
 
+  /**
+   * Get the time this appointment begins.
+   *
+   * @return String representation of appointment begin time
+     */
   @Override
   public String getBeginTimeString() {
     return beginTime;
   }
 
+  /**
+   * Get the time this appointment ends.
+   *
+   * @return String representation of appointment end time
+   */
   @Override
   public String getEndTimeString() {
     return endTime;
   }
 
+  /**
+   * Get the description of this appointment.
+   *
+   * @return Description of this appointment
+   */
   @Override
   public String getDescription() {
     return description;
