@@ -17,7 +17,7 @@ public class AppointmentTest {
   }
 
   @Test
-  public void initiallyAllAppointmentsHaveNullDescription() {
+  public void initiallyDescriptionIsNull() {
     Appointment appointment = new Appointment();
     assertThat(appointment.getDescription(), is(nullValue()));
   }
