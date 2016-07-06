@@ -128,27 +128,4 @@ public class Project1 {
       return null;
     }
   }
-
 }
-
-/*
-
-The -print option cannot appear after the args, but the options can appear in any order.  That is, a command line like
-
-$ java -jar target/apptbook-1.0-SNAPSHOT.jar Dave -print 7/15/2016 14:39  7/15/2016 15:39
-
-should create an appointment whose description is "-print".  Note that I won't test this case, though.
-
-A command line like
-
-$ java -jar target/apptbook-1.0-SNAPSHOT.jar Dave "Save the whales" 7/15/2016 14:39  7/15/2016 15:39 -print
-
-should issue an error because there are extraneous command line arguments.
-
-A command line like:
-
-$ java -jar target/apptbook-1.0-SNAPSHOT.jar -print -README Dave "Save the whales" 7/15/2016 14:39  7/15/2016 15:39
-
-should print the README and exit because that's what you always do when -README is provided.
-
- */
