@@ -34,7 +34,7 @@ public class Project2
     ArrayList<String> argsList = new ArrayList<>(Arrays.asList(args));
 
     // Print the README if flag is present
-    if (argsList.contains("-README")) {
+    if (argsList.contains("-README") || argsList.size() == 0) {
       System.out.println("Chance Snow - Project 1\n" +
               "\tAppointment Book Application\n\n" +
               "Create an appointment in a new appointment book.\n");
