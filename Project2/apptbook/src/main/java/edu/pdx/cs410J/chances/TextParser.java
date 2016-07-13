@@ -13,6 +13,11 @@ public class TextParser implements AppointmentBookParser
 {
     private File file;
 
+    /**
+     * Create a new appt book parser given a file path.
+     *
+     * @param filePath The file path
+     */
     public TextParser(String filePath)
     {
         file = new File(filePath);
