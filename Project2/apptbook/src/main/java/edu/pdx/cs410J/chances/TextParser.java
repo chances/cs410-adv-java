@@ -59,7 +59,6 @@ public class TextParser implements AppointmentBookParser
                 // 3. End date
                 //
                 int step = 0;
-                String description = null;
                 Date beginTime = null;
                 Date endTime = null;
 
@@ -68,17 +67,7 @@ public class TextParser implements AppointmentBookParser
 
                     switch (step) {
                         case 0:
-                            description = line;
-
-                            // Unescape double quotes and newlines
-                            description = description.replaceAll("&quot;", "\"");
-                            description = description.replaceAll("&#13;", "\r");
-                            description = description.replaceAll("&#10;", "\n");
-
-                            step = 1;
-                            break;
                         case 1:
-                        case 2:
                             String dateString = br.readLine();
                             Date date;
                             try {
@@ -92,27 +81,34 @@ public class TextParser implements AppointmentBookParser
                             }
 
                             if (date != null) {
-                                if (step == 1) {
+                                if (step == 0) {
                                     beginTime = date;
                                 } else {
                                     endTime = date;
                                 }
                             }
 
-                            // If finished with appointment, add to the appt book
-                            if (step == 2) {
-                                Appointment appointment =  new Appointment(description);
-                                appointment.setBeginTime(beginTime);
-                                appointment.setBeginTime(endTime);
+                            step = (step == 0) ? 1 : 2;
+                            break;
+                        case 2:
+                            String description = line;
 
-                                book.getAppointments().add(appointment);
+                            // Unescape double quotes and newlines
+                            description = description.replaceAll("&quot;", "\"");
+                            description = description.replaceAll("&#13;", "\r");
+                            description = description.replaceAll("&#10;", "\n");
 
-                                description = null;
-                                beginTime = null;
-                                endTime = null;
-                            }
+                            // Finished with appointment, add to the appt book
+                            Appointment appointment =  new Appointment(description);
+                            appointment.setBeginTime(beginTime);
+                            appointment.setBeginTime(endTime);
 
-                            step = (step == 1) ? 2 : 0;
+                            book.getAppointments().add(appointment);
+
+                            beginTime = null;
+                            endTime = null;
+
+                            step = 0;
                             break;
                     }
 
