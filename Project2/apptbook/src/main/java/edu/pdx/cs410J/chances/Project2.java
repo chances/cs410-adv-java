@@ -59,51 +59,49 @@ public class Project2
       System.err.println("Too many command line arguments");
     }
 
-    if (argsListSize == EXPECTED_NUM_ARGS) {
-      // Parse appointment args
-      String owner = argsList.get(0);
-      String description = argsList.get(1);
-      String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
-      String endTime = String.join(" ", argsList.get(4), argsList.get(5));
+    // Parse appointment args
+    String owner = argsList.get(0);
+    String description = argsList.get(1);
+    String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
+    String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
-      AppointmentBook book = new AppointmentBook(owner);
+    AppointmentBook book = new AppointmentBook(owner);
 
-      DateFormat[] formats = new DateFormat[]{
-              new SimpleDateFormat("mm/dd/yyyy kk:mm"),
-              new SimpleDateFormat("mm/dd/yyyy k:mm"),
-              new SimpleDateFormat("m/dd/yyyy kk:mm"),
-              new SimpleDateFormat("m/dd/yyyy k:mm"),
-              new SimpleDateFormat("mm/d/yyyy kk:mm"),
-              new SimpleDateFormat("mm/d/yyyy k:mm"),
-              new SimpleDateFormat("m/d/yyyy kk:mm"),
-              new SimpleDateFormat("m/d/yyyy k:mm")
-      };
-      for (DateFormat format : formats) {
-        format.setLenient(false);
+    DateFormat[] formats = new DateFormat[]{
+            new SimpleDateFormat("mm/dd/yyyy kk:mm"),
+            new SimpleDateFormat("mm/dd/yyyy k:mm"),
+            new SimpleDateFormat("m/dd/yyyy kk:mm"),
+            new SimpleDateFormat("m/dd/yyyy k:mm"),
+            new SimpleDateFormat("mm/d/yyyy kk:mm"),
+            new SimpleDateFormat("mm/d/yyyy k:mm"),
+            new SimpleDateFormat("m/d/yyyy kk:mm"),
+            new SimpleDateFormat("m/d/yyyy k:mm")
+    };
+    for (DateFormat format : formats) {
+      format.setLenient(false);
+    }
+
+    Date begin = tryParseDate(formats, beginTime);
+    Date end = tryParseDate(formats, endTime);
+
+    if (begin == null) {
+      System.err.println("Malformed begin time");
+    } else if (end == null) {
+      System.err.println("Malformed end time");
+    } else {
+      Appointment appointment = new Appointment(description);
+
+      appointment.setBeginTime(begin);
+      appointment.setEndTime(end);
+
+      // Add the successfully parsed appointment to the book
+      book.addAppointment(appointment);
+
+      if (shouldPrintDescription) {
+        System.out.println(appointment);
       }
 
-      Date begin = tryParseDate(formats, beginTime);
-      Date end = tryParseDate(formats, endTime);
-
-      if (begin == null) {
-        System.err.println("Malformed begin time");
-      } else if (end == null) {
-        System.err.println("Malformed end time");
-      } else {
-        Appointment appointment = new Appointment(description);
-
-        appointment.setBeginTime(begin);
-        appointment.setEndTime(end);
-
-        // Add the successfully parsed appointment to the book
-        book.addAppointment(appointment);
-
-        if (shouldPrintDescription) {
-          System.out.println(appointment);
-        }
-
-        System.exit(0);
-      }
+      System.exit(0);
     }
 
     // Default to error
