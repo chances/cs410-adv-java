@@ -100,71 +100,73 @@ public class Project2
       System.err.println("Too many command line arguments");
     }
 
-    // Parse appointment args
-    String owner = argsList.get(0);
-    String description = argsList.get(1);
-    String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
-    String endTime = String.join(" ", argsList.get(4), argsList.get(5));
+    if (argsListSize == EXPECTED_NUM_ARGS) {
+      // Parse appointment args
+      String owner = argsList.get(0);
+      String description = argsList.get(1);
+      String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
+      String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
-    if (book.getOwnerName().length() > 0 && !book.getOwnerName().equals(owner)) {
-      // Specified owner does not match that of the appt book file's owner
-      System.err.println("Specified owner, " + owner + ", does not own loaded " +
-              "appointment book");
+      if (book.getOwnerName().length() > 0 && !book.getOwnerName().equals(owner)) {
+        // Specified owner does not match that of the appt book file's owner
+        System.err.println("Specified owner, " + owner + ", does not own loaded " +
+                "appointment book");
 
-      System.exit(3);
-    } else {
-      book.setOwnerName(owner);
-    }
-
-    DateFormat[] formats = new DateFormat[]{
-            new SimpleDateFormat("MM/dd/yyyy kk:mm"),
-            new SimpleDateFormat("MM/dd/yyyy k:mm"),
-            new SimpleDateFormat("M/dd/yyyy kk:mm"),
-            new SimpleDateFormat("M/dd/yyyy k:mm"),
-            new SimpleDateFormat("MM/d/yyyy kk:mm"),
-            new SimpleDateFormat("MM/d/yyyy k:mm"),
-            new SimpleDateFormat("M/d/yyyy kk:mm"),
-            new SimpleDateFormat("M/d/yyyy k:mm")
-    };
-    for (DateFormat format : formats) {
-      format.setLenient(false);
-    }
-
-    Date begin = tryParseDate(formats, beginTime);
-    Date end = tryParseDate(formats, endTime);
-
-    if (begin == null) {
-      System.err.println("Malformed begin time");
-    } else if (end == null) {
-      System.err.println("Malformed end time");
-    } else {
-      Appointment appointment = new Appointment(description);
-
-      appointment.setBeginTime(begin);
-      appointment.setEndTime(end);
-
-      // Add the successfully parsed appointment to the book
-      book.addAppointment(appointment);
-
-      if (shouldPrintDescription) {
-        System.out.println(appointment);
+        System.exit(3);
+      } else {
+        book.setOwnerName(owner);
       }
 
-      // Dump appt book to file, if necessary and able
-      if (shouldUseFile && filePath != null) {
-        TextDumper dumper = new TextDumper(filePath);
+      DateFormat[] formats = new DateFormat[]{
+              new SimpleDateFormat("MM/dd/yyyy kk:mm"),
+              new SimpleDateFormat("MM/dd/yyyy k:mm"),
+              new SimpleDateFormat("M/dd/yyyy kk:mm"),
+              new SimpleDateFormat("M/dd/yyyy k:mm"),
+              new SimpleDateFormat("MM/d/yyyy kk:mm"),
+              new SimpleDateFormat("MM/d/yyyy k:mm"),
+              new SimpleDateFormat("M/d/yyyy kk:mm"),
+              new SimpleDateFormat("M/d/yyyy k:mm")
+      };
+      for (DateFormat format : formats) {
+        format.setLenient(false);
+      }
 
-        try {
-          dumper.dump(book);
-        } catch (IOException ex) {
-          System.err.println("Could not write appointment book to file:\n");
-          System.err.println(ex.getMessage());
+      Date begin = tryParseDate(formats, beginTime);
+      Date end = tryParseDate(formats, endTime);
 
-          System.exit(2);
+      if (begin == null) {
+        System.err.println("Malformed begin time");
+      } else if (end == null) {
+        System.err.println("Malformed end time");
+      } else {
+        Appointment appointment = new Appointment(description);
+
+        appointment.setBeginTime(begin);
+        appointment.setEndTime(end);
+
+        // Add the successfully parsed appointment to the book
+        book.addAppointment(appointment);
+
+        if (shouldPrintDescription) {
+          System.out.println(appointment);
         }
-      }
 
-      System.exit(0);
+        // Dump appt book to file, if necessary and able
+        if (shouldUseFile && filePath != null) {
+          TextDumper dumper = new TextDumper(filePath);
+
+          try {
+            dumper.dump(book);
+          } catch (IOException ex) {
+            System.err.println("Could not write appointment book to file:\n");
+            System.err.println(ex.getMessage());
+
+            System.exit(2);
+          }
+        }
+
+        System.exit(0);
+      }
     }
 
     // Default to error
