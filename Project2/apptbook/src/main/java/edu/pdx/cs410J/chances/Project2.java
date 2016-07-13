@@ -40,9 +40,9 @@ public class Project2
 
     // Print the README if flag is present or zero arguments
     if (argsList.contains("-README") || argsList.size() == 0) {
-      System.out.println("Chance Snow - Project 1\n" +
+      System.out.println("Chance Snow - Project 2\n" +
               "\tAppointment Book Application\n\n" +
-              "Create an appointment in a new appointment book.\n");
+              "Create an appointment in a new or existing appointment book.\n");
       System.out.print(USAGE_DOCUMENTATION);
 
       System.exit(0);
