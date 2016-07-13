@@ -17,13 +17,14 @@ public class Project2
 
   public static final String USAGE_DOCUMENTATION = "usage: java edu.pdx.cs410J.chances.Project1 [options] <args>\n" +
           "\targs are (in this order):\n" +
-          "\t\towner The person whose owns the appt book\n" +
-          "\t\tdescription A description of the appointment\n" +
-          "\t\tbeginTime When the appt begins (24-hour time)\n" +
-          "\t\tendTime When the appt ends (24-hour time)\n" +
+          "\t\towner\t\tThe person whose owns the appt book\n" +
+          "\t\tdescription\tA description of the appointment\n" +
+          "\t\tbeginTime\tWhen the appt begins (24-hour time)\n" +
+          "\t\tendTime\t\tWhen the appt ends (24-hour time)\n" +
           "\toptions are (options may appear in any order):\n" +
-          "\t\t-print Prints a description of the new appointment\n" +
-          "\t\t-README Prints a README for this project and exits\n" +
+          "\t\t-textFile file\tWhere to read/write the appointment book\n" +
+          "\t\t-print\t\t\tPrints a description of the new appointment\n" +
+          "\t\t-README\t\t\tPrints a README for this project and exits\n" +
           "\tDate and time should be in the format: mm/dd/yyyy hh:mm";
   public static final int EXPECTED_NUM_ARGS = 6;
 
