@@ -1,6 +1,7 @@
 package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointmentBook;
+import edu.pdx.cs410J.ParserException;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -51,6 +52,34 @@ public class Project2
       argsList.remove(0);
     }
 
+    AppointmentBook book = null;
+
+    // Handle file arg option and parse appointment book if necessary
+    boolean shouldUseFile = argsList.contains("-textFile");
+
+    if (shouldUseFile) {
+      int fileOptionIndex = argsList.indexOf("-textFile");
+
+      argsList.remove(fileOptionIndex);
+
+      try {
+        String filePath = argsList.get(fileOptionIndex);
+
+        TextParser parser = new TextParser(filePath);
+        book = (AppointmentBook) parser.parse();
+
+        argsList.remove(fileOptionIndex);
+      } catch (IndexOutOfBoundsException | ParserException ex) {
+        if (ex instanceof ParserException) {
+
+        }
+      }
+    }
+
+    if (book == null) {
+      book = new AppointmentBook();
+    }
+
     // Handle too few or extraneous arguments
     int argsListSize = argsList.size();
     if (argsListSize < EXPECTED_NUM_ARGS) {
@@ -65,7 +94,7 @@ public class Project2
     String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
     String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
-    AppointmentBook book = new AppointmentBook(owner);
+    book.setOwner(owner);
 
     DateFormat[] formats = new DateFormat[]{
             new SimpleDateFormat("mm/dd/yyyy kk:mm"),
