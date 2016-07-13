@@ -25,3 +25,6 @@ buildNumber.properties
 # IntelliJ IDEA
 .idea/
 *.iml
+SerializeFile
+file.txt
+pairs/
