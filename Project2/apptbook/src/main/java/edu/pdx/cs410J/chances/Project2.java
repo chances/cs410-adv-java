@@ -73,7 +73,11 @@ public class Project2
         argsList.remove(fileOptionIndex);
       } catch (IndexOutOfBoundsException | ParserException ex) {
         if (ex instanceof ParserException) {
+          System.err.println("Could not load appointment book from file, " +
+                  filePath + ":\n");
+          System.err.println(ex.getMessage());
 
+          System.exit(2);
         } else {
           // The file path option parameter could not be parsed
           // Therefore, no file should be written to later on
