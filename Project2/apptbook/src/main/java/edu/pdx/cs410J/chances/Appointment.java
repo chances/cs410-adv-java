@@ -23,10 +23,28 @@ public class Appointment extends AbstractAppointment {
   }
 
   /**
+   * Get the time this appointment begins.
+   */
+  @Override
+  public Date getBeginTime()
+  {
+    return beginTime;
+  }
+
+  /**
    * Set the time this appointment begins.
    */
   public void setBeginTime(Date beginTime) {
     this.beginTime = beginTime;
+  }
+
+  /**
+   * Get the time this appointment ends.
+   */
+  @Override
+  public Date getEndTime()
+  {
+    return endTime;
   }
 
   /**
