@@ -49,10 +49,10 @@ public class Project2
     }
 
     // Handle print option
-    boolean shouldPrintDescription = argsList.get(0).equals("-print");
+    boolean shouldPrintDescription = argsList.contains("-print");
 
     if (shouldPrintDescription) {
-      argsList.remove(0);
+      argsList.remove(argsList.indexOf("-print"));
     }
 
     AppointmentBook book = null;
