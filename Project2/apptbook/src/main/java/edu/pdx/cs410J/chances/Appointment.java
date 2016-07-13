@@ -2,9 +2,13 @@ package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointment;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment extends AbstractAppointment {
+  public static final SimpleDateFormat DATE_FORMAT =
+          new SimpleDateFormat("MM/dd/yyyy kk:mm");
+
   private Date beginTime;
   private Date endTime;
   private String description;
