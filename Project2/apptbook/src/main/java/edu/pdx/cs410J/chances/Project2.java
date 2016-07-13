@@ -107,7 +107,9 @@ public class Project2
       String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
       String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
-      if (book.getOwnerName().length() > 0 && !book.getOwnerName().equals(owner)) {
+      if (book.getOwnerName() != null &&
+              book.getOwnerName().length() > 0 &&
+              !book.getOwnerName().equals(owner)) {
         // Specified owner does not match that of the appt book file's owner
         System.err.println("Specified owner, " + owner + ", does not own loaded " +
                 "appointment book");
