@@ -119,6 +119,8 @@ public class TextParser implements AppointmentBookParser
                     throw new ParserException("Reached malformed appointment " +
                             "(missing required data)");
                 }
+
+                return book;
             } catch (IOException ex) {
                 throw new ParserException(ex.getMessage(), ex);
             }
