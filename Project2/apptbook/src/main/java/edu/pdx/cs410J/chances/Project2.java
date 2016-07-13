@@ -103,14 +103,14 @@ public class Project2
     book.setOwnerName(owner);
 
     DateFormat[] formats = new DateFormat[]{
-            new SimpleDateFormat("mm/dd/yyyy kk:mm"),
-            new SimpleDateFormat("mm/dd/yyyy k:mm"),
-            new SimpleDateFormat("m/dd/yyyy kk:mm"),
-            new SimpleDateFormat("m/dd/yyyy k:mm"),
-            new SimpleDateFormat("mm/d/yyyy kk:mm"),
-            new SimpleDateFormat("mm/d/yyyy k:mm"),
-            new SimpleDateFormat("m/d/yyyy kk:mm"),
-            new SimpleDateFormat("m/d/yyyy k:mm")
+            new SimpleDateFormat("MM/dd/yyyy kk:mm"),
+            new SimpleDateFormat("MM/dd/yyyy k:mm"),
+            new SimpleDateFormat("M/dd/yyyy kk:mm"),
+            new SimpleDateFormat("M/dd/yyyy k:mm"),
+            new SimpleDateFormat("MM/d/yyyy kk:mm"),
+            new SimpleDateFormat("MM/d/yyyy k:mm"),
+            new SimpleDateFormat("M/d/yyyy kk:mm"),
+            new SimpleDateFormat("M/d/yyyy k:mm")
     };
     for (DateFormat format : formats) {
       format.setLenient(false);
