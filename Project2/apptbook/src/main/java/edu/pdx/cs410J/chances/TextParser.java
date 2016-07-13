@@ -17,7 +17,8 @@ public class TextParser implements AppointmentBookParser
     {
         file = new File(filePath);
 
-        if (!file.exists() || !file.isDirectory()) {
+        // Exceptional state when file doesn't exist or file is a directory
+        if (!file.exists() || file.isDirectory()) {
             file = null;
         }
     }
