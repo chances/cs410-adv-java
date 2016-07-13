@@ -41,6 +41,8 @@ public class TextDumper implements AppointmentBookDumper
         if (file != null) {
             PrintWriter pw = new PrintWriter(file);
 
+            pw.println(appointmentBook.getOwnerName());
+
             for (Appointment appointment :
                     ((AppointmentBook) appointmentBook).getAppointments()) {
                 pw.println(
