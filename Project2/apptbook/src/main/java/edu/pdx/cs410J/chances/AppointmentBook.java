@@ -13,14 +13,22 @@ public class AppointmentBook extends AbstractAppointmentBook<Appointment> {
     private ArrayList<Appointment> appointments;
 
     /**
+     * Construct a new, empty appointment book.
+     */
+    public AppointmentBook() {
+        this.owner = null;
+        this.appointments = new ArrayList<>();
+    }
+
+    /**
      * Construct a new appointment book given its owner.
      *
      * @param owner The book's owner
      */
-    public AppointmentBook(String owner)
-    {
+    public AppointmentBook(String owner) {
+        this();
+
         this.owner = owner;
-        this.appointments = new ArrayList<>();
     }
 
     /**
