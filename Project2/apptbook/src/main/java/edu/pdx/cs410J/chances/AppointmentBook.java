@@ -42,6 +42,16 @@ public class AppointmentBook extends AbstractAppointmentBook<Appointment> {
     }
 
     /**
+     * Set the owner's name.
+     *
+     * @param owner The owner's name
+     */
+    public void setOwner(String owner)
+    {
+        this.owner = owner;
+    }
+
+    /**
      * Get the appointments added to this appointment book.
      *
      * @return Collection of appointments
