@@ -68,14 +68,13 @@ public class TextParser implements AppointmentBookParser
                     switch (step) {
                         case 0:
                         case 1:
-                            String dateString = br.readLine();
                             Date date;
                             try {
-                                date = Appointment.DATE_FORMAT.parse(dateString);
+                                date = Appointment.DATE_FORMAT.parse(line);
                             } catch (Exception ex) {
                                 throw new ParserException(
                                         "Could not parse date \"" +
-                                                dateString + "\"",
+                                                line + "\"",
                                         ex
                                 );
                             }
