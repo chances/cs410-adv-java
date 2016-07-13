@@ -46,7 +46,7 @@ public class AppointmentBook extends AbstractAppointmentBook<Appointment> {
      *
      * @param owner The owner's name
      */
-    public void setOwner(String owner)
+    public void setOwnerName(String owner)
     {
         this.owner = owner;
     }

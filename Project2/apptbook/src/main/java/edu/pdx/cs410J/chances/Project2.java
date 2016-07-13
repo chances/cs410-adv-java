@@ -94,7 +94,7 @@ public class Project2
     String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
     String endTime = String.join(" ", argsList.get(4), argsList.get(5));
 
-    book.setOwner(owner);
+    book.setOwnerName(owner);
 
     DateFormat[] formats = new DateFormat[]{
             new SimpleDateFormat("mm/dd/yyyy kk:mm"),
