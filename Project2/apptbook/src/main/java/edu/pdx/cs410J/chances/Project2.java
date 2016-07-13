@@ -17,6 +17,8 @@ import java.util.Date;
 public class Project2
 {
 
+  // TODO: Refactor this monolith...
+
   public static final String USAGE_DOCUMENTATION = "usage: java edu.pdx.cs410J.chances.Project1 [options] <args>\n" +
           "\targs are (in this order):\n" +
           "\t\towner\t\tThe person whose owns the appt book\n" +
