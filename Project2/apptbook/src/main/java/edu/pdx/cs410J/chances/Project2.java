@@ -56,6 +56,7 @@ public class Project2
 
     // Handle file arg option and parse appointment book if necessary
     boolean shouldUseFile = argsList.contains("-textFile");
+    String filePath;
 
     if (shouldUseFile) {
       int fileOptionIndex = argsList.indexOf("-textFile");
@@ -63,7 +64,7 @@ public class Project2
       argsList.remove(fileOptionIndex);
 
       try {
-        String filePath = argsList.get(fileOptionIndex);
+        filePath = argsList.get(fileOptionIndex);
 
         TextParser parser = new TextParser(filePath);
         book = (AppointmentBook) parser.parse();
@@ -72,6 +73,10 @@ public class Project2
       } catch (IndexOutOfBoundsException | ParserException ex) {
         if (ex instanceof ParserException) {
 
+        } else {
+          // The file path option parameter could not be parsed
+          // Therefore, no file should be written to later on
+          shouldUseFile = false;
         }
       }
     }
