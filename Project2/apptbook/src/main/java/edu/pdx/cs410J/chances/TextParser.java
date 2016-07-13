@@ -100,7 +100,7 @@ public class TextParser implements AppointmentBookParser
                             // Finished with appointment, add to the appt book
                             Appointment appointment =  new Appointment(description);
                             appointment.setBeginTime(beginTime);
-                            appointment.setBeginTime(endTime);
+                            appointment.setEndTime(endTime);
 
                             book.getAppointments().add(appointment);
 
