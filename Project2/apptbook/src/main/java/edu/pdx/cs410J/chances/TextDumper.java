@@ -43,8 +43,16 @@ public class TextDumper implements AppointmentBookDumper
 
             for (Appointment appointment :
                     ((AppointmentBook) appointmentBook).getAppointments()) {
-                pw.println(appointment.getBeginTimeString());
-                pw.println(appointment.getEndTimeString());
+                pw.println(
+                        Appointment.DATE_FORMAT.format(
+                                appointment.getBeginTime()
+                        )
+                );
+                pw.println(
+                        Appointment.DATE_FORMAT.format(
+                                appointment.getEndTime()
+                        )
+                );
 
                 // Escape description from double quotes, and newlines
                 String description = appointment.getDescription();
