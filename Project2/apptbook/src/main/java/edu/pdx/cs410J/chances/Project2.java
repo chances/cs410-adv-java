@@ -3,6 +3,7 @@ package edu.pdx.cs410J.chances;
 import edu.pdx.cs410J.AbstractAppointmentBook;
 import edu.pdx.cs410J.ParserException;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,7 +57,7 @@ public class Project2
 
     // Handle file arg option and parse appointment book if necessary
     boolean shouldUseFile = argsList.contains("-textFile");
-    String filePath;
+    String filePath = null;
 
     if (shouldUseFile) {
       int fileOptionIndex = argsList.indexOf("-textFile");
@@ -133,6 +134,20 @@ public class Project2
 
       if (shouldPrintDescription) {
         System.out.println(appointment);
+      }
+
+      // Dump appt book to file, if necessary and able
+      if (shouldUseFile && filePath != null) {
+        TextDumper dumper = new TextDumper(filePath);
+
+        try {
+          dumper.dump(book);
+        } catch (IOException ex) {
+          System.err.println("Could not write appointment book to file:\n");
+          System.err.println(ex.getMessage());
+
+          System.exit(2);
+        }
       }
 
       System.exit(0);
