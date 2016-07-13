@@ -40,7 +40,21 @@ public class TextDumper implements AppointmentBookDumper
     {
         if (file != null) {
             PrintWriter pw = new PrintWriter(file);
-            pw.println("appointment book");
+
+            for (Appointment appointment :
+                    ((AppointmentBook) appointmentBook).getAppointments()) {
+                pw.println(appointment.getBeginTimeString());
+                pw.println(appointment.getEndTimeString());
+
+                // Escape description from double quotes, and newlines
+                String description = appointment.getDescription();
+                description = description.replaceAll("\"", "&quot;");
+                description = description.replaceAll("\\r", "&#13;");
+                description = description.replaceAll("\\n", "&#10;");
+
+                pw.println(description);
+            }
+
             pw.close();
         }
     }
