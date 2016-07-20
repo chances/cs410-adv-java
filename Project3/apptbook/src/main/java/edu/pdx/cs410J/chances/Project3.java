@@ -27,7 +27,7 @@ public class Project3
           "\t\tendTime\t\tWhen the appt ends (24-hour time)\n" +
           "\toptions are (options may appear in any order):\n" +
           "\t\t-pretty file\tPretty print the appointment book to\n" +
-          "\t\t\t\ta text file or to standard out. (file -)\n" +
+          "\t\t\t\t\t\ta text file or to standard out. (file -)\n" +
           "\t\t-textFile file\tWhere to read/write the appointment book\n" +
           "\t\t-print\t\t\tPrints a description of the new appointment\n" +
           "\t\t-README\t\t\tPrints a README for this project and exits\n" +
