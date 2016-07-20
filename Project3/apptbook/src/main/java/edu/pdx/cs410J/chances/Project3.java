@@ -3,6 +3,7 @@ package edu.pdx.cs410J.chances;
 import edu.pdx.cs410J.AbstractAppointmentBook;
 import edu.pdx.cs410J.ParserException;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -60,13 +61,19 @@ public class Project3
     AppointmentBook book = null;
 
     boolean shouldPrettyPrint = argsList.contains("-pretty");
-    String prettyFilePath = null;
+    PrettyPrinter prettyPrinter = null;
     if (shouldPrettyPrint) {
       int fileOptionIndex = argsList.indexOf("-pretty");
 
       argsList.remove(fileOptionIndex);
 
-      prettyFilePath = argsList.get(fileOptionIndex);
+      String prettyFilePath = argsList.get(fileOptionIndex);
+
+      if (prettyFilePath.equalsIgnoreCase("file -")) {
+        prettyPrinter = new PrettyPrinter();
+      } else {
+        prettyPrinter = new PrettyPrinter(prettyFilePath);
+      }
     }
 
     // Handle file arg option and parse appointment book if necessary
@@ -163,6 +170,17 @@ public class Project3
 
         if (shouldPrintDescription) {
           System.out.println(appointment);
+        }
+
+        if (shouldPrettyPrint) {
+          try {
+            prettyPrinter.dump(book);
+          } catch (IOException ex) {
+            System.err.println("Could not pretty print appointment book to file:\n");
+            System.err.println(ex.getMessage());
+
+            System.exit(2);
+          }
         }
 
         // Dump appt book to file, if necessary and able
