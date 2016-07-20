@@ -2,12 +2,15 @@ package edu.pdx.cs410J.chances;
 
 import edu.pdx.cs410J.AbstractAppointment;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment extends AbstractAppointment implements Comparable<Appointment> {
   public static final SimpleDateFormat DATE_FORMAT =
           new SimpleDateFormat("MM/dd/yyyy kk:mm");
+  public static final DateFormat SHORT_DATE_FORMAT =
+          DateFormat.getTimeInstance(DateFormat.SHORT);
 
   private Date beginTime;
   private Date endTime;
@@ -61,7 +64,7 @@ public class Appointment extends AbstractAppointment implements Comparable<Appoi
      */
   @Override
   public String getBeginTimeString() {
-    return beginTime.toString();
+    return SHORT_DATE_FORMAT.format(beginTime);
   }
 
   /**
@@ -71,7 +74,7 @@ public class Appointment extends AbstractAppointment implements Comparable<Appoi
    */
   @Override
   public String getEndTimeString() {
-    return endTime.toString();
+    return SHORT_DATE_FORMAT.format(endTime);
   }
 
   /**
