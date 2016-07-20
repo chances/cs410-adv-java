@@ -32,7 +32,7 @@ public class Project3
           "\t\t-print\t\t\tPrints a description of the new appointment\n" +
           "\t\t-README\t\t\tPrints a README for this project and exits\n" +
           "\tDate and time should be in the format: mm/dd/yyyy hh:mm";
-  public static final int EXPECTED_NUM_ARGS = 6;
+  public static final int EXPECTED_NUM_ARGS = 8;
 
   public static void main(String[] args) {
     // Refer to one of Dave's classes so that we can be sure it is on the classpath
@@ -106,8 +106,8 @@ public class Project3
       // Parse appointment args
       String owner = argsList.get(0);
       String description = argsList.get(1);
-      String beginTime = String.join(" ", argsList.get(2), argsList.get(3));
-      String endTime = String.join(" ", argsList.get(4), argsList.get(5));
+      String beginTime = String.join(" ", argsList.get(2), argsList.get(3), argsList.get(4));
+      String endTime = String.join(" ", argsList.get(5), argsList.get(6), argsList.get(7));
 
       if (book.getOwnerName() != null &&
               book.getOwnerName().length() > 0 &&
@@ -122,14 +122,14 @@ public class Project3
       }
 
       DateFormat[] formats = new DateFormat[]{
-              new SimpleDateFormat("MM/dd/yyyy kk:mm"),
-              new SimpleDateFormat("MM/dd/yyyy k:mm"),
-              new SimpleDateFormat("M/dd/yyyy kk:mm"),
-              new SimpleDateFormat("M/dd/yyyy k:mm"),
-              new SimpleDateFormat("MM/d/yyyy kk:mm"),
-              new SimpleDateFormat("MM/d/yyyy k:mm"),
-              new SimpleDateFormat("M/d/yyyy kk:mm"),
-              new SimpleDateFormat("M/d/yyyy k:mm")
+              new SimpleDateFormat("MM/dd/yyyy hh:mm a"),
+              new SimpleDateFormat("MM/dd/yyyy h:mm a"),
+              new SimpleDateFormat("M/dd/yyyy hh:mm a"),
+              new SimpleDateFormat("M/dd/yyyy h:mm a"),
+              new SimpleDateFormat("MM/d/yyyy hh:mm a"),
+              new SimpleDateFormat("MM/d/yyyy h:mm a"),
+              new SimpleDateFormat("M/d/yyyy hh:mm a"),
+              new SimpleDateFormat("M/d/yyyy h:mm a")
       };
       for (DateFormat format : formats) {
         format.setLenient(false);
