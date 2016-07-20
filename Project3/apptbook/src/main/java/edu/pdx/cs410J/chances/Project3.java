@@ -59,6 +59,16 @@ public class Project3
 
     AppointmentBook book = null;
 
+    boolean shouldPrettyPrint = argsList.contains("-pretty");
+    String prettyFilePath = null;
+    if (shouldPrettyPrint) {
+      int fileOptionIndex = argsList.indexOf("-pretty");
+
+      argsList.remove(fileOptionIndex);
+
+      prettyFilePath = argsList.get(fileOptionIndex);
+    }
+
     // Handle file arg option and parse appointment book if necessary
     boolean shouldUseFile = argsList.contains("-textFile");
     String filePath = null;
