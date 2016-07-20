@@ -5,7 +5,7 @@ import edu.pdx.cs410J.AbstractAppointment;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Appointment extends AbstractAppointment {
+public class Appointment extends AbstractAppointment implements Comparable<Appointment> {
   public static final SimpleDateFormat DATE_FORMAT =
           new SimpleDateFormat("MM/dd/yyyy kk:mm");
 
@@ -82,5 +82,34 @@ public class Appointment extends AbstractAppointment {
   @Override
   public String getDescription() {
     return description;
+  }
+
+  /**
+   * Compares this appointment to another.
+   *
+   * Appointments should be sorted chronologically by their beginning time. If
+   * two appointment begin at the same time, they should be sorted
+   * chronologically by their ending time. Otherwise, the two appointments
+   * should be sorted lexicographically by their descriptions.
+   *
+   * @param other Appointment to compare to
+   * @return Ordinal difference between Appointments, zero if identical
+     */
+  @Override
+  public int compareTo(Appointment other) {
+    int difference = 0;
+
+    // Compare begin times
+    difference = this.beginTime.compareTo(other.beginTime);
+
+    // Compare end times if begin times are identical
+    difference = (difference == 0) ?
+            this.endTime.compareTo(other.endTime) : difference;
+
+    // Compare descriptions if begin and end times are identical
+    difference = (difference == 0) ?
+            this.description.compareTo(other.description) : difference;
+
+    return difference;
   }
 }
