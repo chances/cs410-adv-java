@@ -78,12 +78,8 @@ public class PrettyPrinter implements AppointmentBookDumper
                     ) + "\n"
             );
 
-            // Calculate duration of appointment in minutes
-            long difference = appointment.getEndTime().getTime() -
-                    appointment.getBeginTime().getTime();
             long durationInMinutes =
-                    TimeUnit.MILLISECONDS.toMinutes(difference);
-
+                    TimeUnit.MILLISECONDS.toMinutes(appointment.getDuration());
             pw.println("Duration: " + durationInMinutes + " minutes");
 
             count += 1;
