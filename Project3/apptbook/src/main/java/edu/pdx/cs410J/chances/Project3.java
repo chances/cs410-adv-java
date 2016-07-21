@@ -69,6 +69,8 @@ public class Project3
 
       String prettyFilePath = argsList.get(fileOptionIndex);
 
+      argsList.remove(fileOptionIndex);
+
       if (prettyFilePath.equalsIgnoreCase("file -")) {
         prettyPrinter = new PrettyPrinter();
       } else {
