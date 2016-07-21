@@ -88,6 +88,15 @@ public class Appointment extends AbstractAppointment implements Comparable<Appoi
   }
 
   /**
+   * Get the duration of this appointment in milliseconds.
+   *
+   * @return Duration of this appointment
+     */
+  public long getDuration() {
+    return this.getEndTime().getTime() - this.getBeginTime().getTime();
+  }
+
+  /**
    * Compares this appointment to another.
    *
    * Appointments should be sorted chronologically by their beginning time. If
