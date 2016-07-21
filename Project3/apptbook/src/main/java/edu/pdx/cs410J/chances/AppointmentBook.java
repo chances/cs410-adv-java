@@ -69,5 +69,8 @@ public class AppointmentBook extends AbstractAppointmentBook<Appointment> {
     @Override
     public void addAppointment(Appointment appointment) {
         this.appointments.add(appointment);
+
+        // Sort the list of appointments
+        this.appointments.sort(Appointment::compareTo);
     }
 }
