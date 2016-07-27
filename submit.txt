@@ -1,0 +1,1 @@
+java -cp /u/whitlock/jars/grader.jar edu.pdx.cs410J.grader.Submit Project1 "Chance Snow" chances csnow@pdx.edu -comment "Project 1: An unknown option does not, as it should, result in an error" Project1.java Appointment.java AppointmentBook.java
